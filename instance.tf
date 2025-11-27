@@ -13,6 +13,7 @@ resource "google_sql_database_instance" "sql_instance" {
   database_version = var.database_version
 
   encryption_key_name = var.kms_key
+  root_password       = random_password.root_password.result
 
   settings {
     tier = var.database_tier
