@@ -11,6 +11,7 @@ locals {
     retained_backups               = 3
     transaction_log_retention_days = 7
   }
+  retain_backups_on_delete = true
 
   connector_enforcement = var.cloud_sql_auth_proxy_usage ? "REQUIRED" : "NOT_REQUIRED"
 
@@ -19,5 +20,5 @@ locals {
   # Maintenance window configuration
   maintenance_window_day          = 1
   maintenance_window_hour         = 23
-  maintenance_window_update_track = "canary"
+  maintenance_window_update_track = "week5"
 }

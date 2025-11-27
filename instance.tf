@@ -23,6 +23,7 @@ resource "google_sql_database_instance" "sql_instance" {
     deletion_protection_enabled = var.deletion_protection
     connector_enforcement       = local.connector_enforcement
 
+    retain_backups_on_delete    = true
     dynamic "backup_configuration" {
       for_each = [local.backup_configurations]
       content {
@@ -52,6 +53,10 @@ resource "google_sql_database_instance" "sql_instance" {
       day          = local.maintenance_window_day
       hour         = local.maintenance_window_hour
       update_track = local.maintenance_window_update_track
+    }
+
+    insights_config {
+        query_insights_enabled = true
     }
   }
 }
